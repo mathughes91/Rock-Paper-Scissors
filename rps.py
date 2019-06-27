@@ -158,8 +158,19 @@ class Game:
         elif self.restart == "n":
             print("Thank you for playing. Goodbye.")
             quit()
-
-
+            
+            
+def choose_player(difficulty):
+    if difficulty == 'easy':
+        return CyclePlayer()
+    elif difficulty == 'medium':
+        return RandomPlayer()
+    elif difficulty == 'hard':
+        return ReflectPlayer()
+            
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), ReflectPlayer())
+    opponent = valid_input("Please choose your opponents difficuly. "
+                           " 'Easy' , 'Medium' , "
+                           "'Hard' > ", ["easy", "medium", "hard"])
+    game = Game(HumanPlayer(), choose_player(opponent))
     game.play_game()
